@@ -2,7 +2,7 @@ import { login, isAuthenticated } from './auth.js';
 
 // Redirect if already authenticated
 if (isAuthenticated()) {
-    window.location.href = '/profile';
+    window.location.href = '../profile.html';
 }
 
 // Get form elements
@@ -90,7 +90,7 @@ form.addEventListener('submit', async (e) => {
         submitBtn.disabled = true;
         errorMessage.textContent = ''; // Clear any previous error
         await login(identifierEl.value, passwordEl.value);
-        window.location.href = '/profile';
+        window.location.href = '../profile.html';
     } catch (error) {
         errorMessage.textContent = error.message;
         // Reset animations
