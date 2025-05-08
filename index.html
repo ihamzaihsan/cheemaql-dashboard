@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <title>CheemaQL</title>
+    <title>Login - CheemaQL: Reboot01 Dashboard</title>
 </head>
 <body>
         
@@ -15,10 +15,10 @@
         </h1>
         <form class="form-container">
             <label class="form-row">
-                <input autocomplete="one-time-code" type="text" id="username" name="username" placeholder="username or email" required>
+                <input autocomplete="username" aria-label="Username or email" type="text" id="username" name="username" placeholder="username or email" required>
             </label>
             <label class="form-row">
-                <input autocomplete="one-time-code" type="password" id="password" name="password" placeholder="password" required>
+                <input autocomplete="current-password" aria-label="Password" type="password" id="password" name="password" placeholder="password" required>
             </label>
             <label class="form-row">
                 <input type="checkbox" id="subscribe" name="subscribe"> Trust me
@@ -186,7 +186,7 @@
         </svg>
     </div>
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-    <script src="../js/index.js"></script>
-    <script type="module" src="../js/login.js"></script>
+    <script src="./js/index.js"></script>
+    <script type="module" src="./js/login.js"></script>
 </body>
 </html>

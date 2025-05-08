@@ -2,7 +2,7 @@ import { login, isAuthenticated } from './auth.js';
 
 // Redirect if already authenticated
 if (isAuthenticated()) {
-    window.location.href = '../profile.html';
+    window.location.href = './profile.html';
 }
 
 // Get form elements
@@ -15,6 +15,7 @@ checkboxEl.disabled = true;
 
 // Create error message element
 const errorMessage = document.createElement('div');
+errorMessage.setAttribute('role', 'alert');
 errorMessage.style.color = 'red';
 errorMessage.style.marginTop = '10px';
 form.appendChild(errorMessage);
@@ -74,7 +75,7 @@ form.addEventListener('submit', async (e) => {
 
      // Check if checkbox is checked first
      if (!checkboxEl.checked) {
-        errorMessage.textContent = 'Please agree to the terms first';
+        errorMessage.textContent = 'Please check Trust me to continue';
         return;
     }
     
@@ -90,7 +91,7 @@ form.addEventListener('submit', async (e) => {
         submitBtn.disabled = true;
         errorMessage.textContent = ''; // Clear any previous error
         await login(identifierEl.value, passwordEl.value);
-        window.location.href = '../profile.html';
+        window.location.href = './profile.html';
     } catch (error) {
         errorMessage.textContent = error.message;
         // Reset animations

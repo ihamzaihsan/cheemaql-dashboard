@@ -1,9 +1,3 @@
-// Function to check if string is email
-const isEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-};
-
 // Function to encode credentials to base64
 const encodeCredentials = (identifier, password) => {
     // If identifier is an email, use it directly, otherwise use as username
@@ -82,7 +76,7 @@ const login = async (identifier, password) => {
 // Function to logout
 const logout = () => {
     removeToken();
-    window.location.href = '/'; // Redirect to login page
+    window.location.href = './index.html';
 };
 
 // Export functions
