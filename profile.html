@@ -10,13 +10,14 @@
     <!-- Add D3.js -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
-<body>  
+<body>
+
     <h1 class="graphql-header">
     <span class="cheema">Cheema</span><span class="ql">QL</span>
     </h1>
-    <div class="profile-container">
+    <main class="profile-container">
         <!-- User Info Section -->
-        <header>
+        <header id="overview">
             <button id="logoutBtn" class="logout-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -25,7 +26,7 @@
                 </svg>
                 Logout
             </button>
-          
+
             <div id="userInfo" class="user-info">
                 <!-- User data will be populated here -->
                 <div class="user-info-skeleton">
@@ -71,7 +72,7 @@
                 </div>
 
                 <!-- Audit Ratio Graph (Keep existing structure) -->
-                <div class="graph">
+                <div class="graph audit-card">
                     <h3>Audit Ratio</h3>
                     <svg id="auditGraph" class="stat-graph" viewBox="0 0 400 300">
                         <!-- SVG graph will be generated here -->
@@ -109,7 +110,24 @@
             </div>
 
         </section>
-    </div>
+        <section id="personalAudits" class="personal-audits" aria-labelledby="personal-audits-title">
+            <div class="personal-audits-heading">
+                <div><p class="profile-eyebrow">PEER LEARNING</p><h2 id="personal-audits-title">Your pending audits</h2></div>
+                <button id="refreshPersonalAudits" type="button">Refresh audits</button>
+            </div>
+            <p id="personalAuditMessage" role="status">Loading assigned audits…</p>
+            <div class="personal-audit-layout">
+                <div id="personalAuditList" class="personal-audit-list" aria-label="Assigned audits"></div>
+                <div id="personalAuditDetail" class="personal-audit-detail" aria-label="Selected audit details">
+                    <p>Select an audit to see its details and repository commands.</p>
+                </div>
+            </div>
+        </section>
+            <section id="cohortExplorer" class="cohort-explorer" aria-label="Cohort analytics">
+                <h2>Cohort explorer</h2>
+                <p>Loading campus insights…</p>
+            </section>
+    </main>
 
     <script type="module" src="./js/profile.js"></script>
 </body>
