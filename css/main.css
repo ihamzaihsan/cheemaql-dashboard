@@ -33,6 +33,7 @@ body {
 }
 
 .container {
+    z-index: 1;
     position: fixed;
     top: 38%;
     left: 50%;
@@ -113,4 +114,28 @@ svg {
     /*stroke: #222245;*/
     stroke: #000000;
     fill: none
+}
+
+/* A quiet gear wallpaper behind the original interactive login mechanism. */
+.mechanical-background {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    color: #000;
+    opacity: .22;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at 50% 40%, transparent 16%, #000 70%);
+    -webkit-mask-image: radial-gradient(ellipse at 50% 40%, transparent 16%, #000 70%);
+}
+.wallpaper-cog {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: wallpaper-turn 135.236s linear infinite;
+}
+.wallpaper-cog-reverse { animation-direction: reverse; animation-duration: 105.185s; }
+@keyframes wallpaper-turn { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+    .wallpaper-cog { animation: none; }
 }
