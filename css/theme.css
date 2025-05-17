@@ -1,0 +1,100 @@
+:root {
+    color-scheme: light;
+    --chart-text: #64748b;
+    --chart-label: #272a2f;
+    --chart-grid: #94a3b8;
+    --chart-point-outline: #fff;
+}
+.theme-toolbar { position: absolute; top: 12px; right: 6%; z-index: 2; }
+.theme-toggle { display: grid; place-items: center; width: 40px; height: 40px; padding: 9px; border: 1px solid #bcb19e; border-radius: 50%; background: #faf7f0; color: #3f3a32; cursor: pointer; }
+.theme-toggle svg { position: static; width: 20px; height: 20px; transform: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.theme-toggle:hover { background: #e8dfcf; }
+.theme-toggle:focus-visible { outline: 3px solid #3f3a32; outline-offset: 3px; }
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --control-ink: #e8dfce;
+    --control-border: #675f52;
+    --control-border-hover: #a69a83;
+    --control-surface: #302d28;
+    --control-hover: #403a31;
+    --control-selected: #494034;
+    --background-elevated: #302d28;
+    --text-primary: #eee7db;
+    --grid-color: rgb(225 217 199 / 18%);
+    --chart-text: #b7b2a8;
+    --chart-label: #e4ddcf;
+    --chart-grid: #797467;
+    --chart-point-outline: #24231f;
+    --accent-primary: #a5a7ff;
+    --accent-secondary: #c2baff;
+}
+html[data-theme="dark"], html[data-theme="dark"] body { background-color: #1b1a17; color: #e8dfce; }
+html[data-theme="dark"] .mechanical-background { color: #c7b89c; opacity: .2; }
+html[data-theme="dark"] .cheema, html[data-theme="dark"] .ql, html[data-theme="dark"] .graphql-header { color: #eee7db; }
+html[data-theme="dark"] .theme-toggle { background: #302d28; color: #e8dfce; border-color: #675f52; }
+html[data-theme="dark"] .theme-toggle:hover { background: #403a31; }
+html[data-theme="dark"] .theme-toggle:focus-visible { outline-color: #e8dfce; }
+
+/* Preserve the original input-driven login mechanism and GSAP opacity effects. */
+html[data-theme="dark"] .container > svg { filter: invert(1); }
+html[data-theme="dark"] .form-container .form-row input { background: #302d28; color: #eee7db; border-color: #675f52; }
+html[data-theme="dark"] .form-container .form-row input.valid { border-color: #c7b89c; }
+html[data-theme="dark"] .form-container input::placeholder { color: #b7b2a8; }
+html[data-theme="dark"] .form-container .form-row input[type="submit"] { background: #eee; filter: invert(1); }
+html[data-theme="dark"] .form-container input:focus-visible { outline: 2px solid #c7b89c; outline-offset: 3px; }
+html[data-theme="dark"] .form-container [role="alert"] { color: #ffb4a8 !important; }
+
+html[data-theme="dark"] #overview,
+html[data-theme="dark"] .graph,
+html[data-theme="dark"] .xp-graph-card,
+html[data-theme="dark"] .completed-projects-container,
+html[data-theme="dark"] .personal-audits,
+html[data-theme="dark"] .cohort-explorer { background: #24231f; color: #e8dfce; border-color: #524d43; box-shadow: 0 8px 28px rgb(0 0 0 / 20%); }
+html[data-theme="dark"] #overview::before { background: linear-gradient(90deg, #8f8370, #494034); }
+html[data-theme="dark"] h2, html[data-theme="dark"] h3 { color: #eee7db; }
+html[data-theme="dark"] .user-info p { background: linear-gradient(145deg, #35312a, #2b2823); border-color: #524d43; box-shadow: inset 0 1px 0 #454034; }
+html[data-theme="dark"] .user-info .profile-eyebrow { background: none; border: 0; box-shadow: none; }
+html[data-theme="dark"] .profile-avatar { background: linear-gradient(145deg, #594d39, #3e3528); color: #f2e5cd; border-color: #675f52; box-shadow: inset 0 1px 0 #756851; }
+html[data-theme="dark"] .user-info p strong,
+html[data-theme="dark"] .profile-identity > div > span,
+html[data-theme="dark"] #personalAuditMessage,
+html[data-theme="dark"] .cohort-scope-note,
+html[data-theme="dark"] .cohort-view-note,
+html[data-theme="dark"] .cohort-message,
+html[data-theme="dark"] .cohort-empty,
+html[data-theme="dark"] .date-cell,
+html[data-theme="dark"] .audit-due-date,
+html[data-theme="dark"] .radar-title { color: #b7b2a8; }
+html[data-theme="dark"] .xp-progression-svg, html[data-theme="dark"] .stat-graph { background: #2b2924; }
+html[data-theme="dark"] .xp-tooltip { color: #eee7db; }
+html[data-theme="dark"] .radar-chart text { text-shadow: none !important; }
+html[data-theme="dark"] #auditGraph text { fill: #e4ddcf; }
+html[data-theme="dark"] #auditGraph .ratio-text { fill: #91d39a; }
+html[data-theme="dark"] #auditGraph circle[fill="white"] { fill: #24231f; }
+html[data-theme="dark"] #auditGraph path[fill="#eee"] { fill: #464138; }
+html[data-theme="dark"] .projects-table th,
+html[data-theme="dark"] .cohort-table th { background: #302d28; color: #c5bcae; }
+html[data-theme="dark"] .projects-table td { background: #24231f; }
+html[data-theme="dark"] .projects-table tbody tr:hover td { background: #403a31; }
+html[data-theme="dark"] .cohort-table th,
+html[data-theme="dark"] .cohort-table td,
+html[data-theme="dark"] .cohort-table-scroll,
+html[data-theme="dark"] .cohort-tabs { border-color: #524d43; }
+html[data-theme="dark"] .cohort-explorer input,
+html[data-theme="dark"] .cohort-explorer select { background: #302d28; color: #e8dfce; border-color: #675f52; }
+html[data-theme="dark"] .cohort-filters button { background: #e8dfce; color: #24231f; }
+html[data-theme="dark"] .personal-audits .personal-audit-option { background: #302d28; }
+html[data-theme="dark"] .personal-audits .personal-audit-option[aria-pressed="true"] { background: #494034; }
+html[data-theme="dark"] .audit-deadline { background: #54421d; color: #f3d99a; }
+html[data-theme="dark"] .audit-code-row code { background: #1b1a17; color: #eee7db; }
+html[data-theme="dark"] .audit-detail-links button { background: #e8dfce; color: #24231f; }
+html[data-theme="dark"] .projects-table-container { scrollbar-color: #938672 #302d28; }
+html[data-theme="dark"] .projects-table-container::-webkit-scrollbar-track { background: #302d28; }
+html[data-theme="dark"] .projects-table-container::-webkit-scrollbar-thumb { background: #938672; border-color: #302d28; }
+html[data-theme="dark"] .skeleton-line { background: linear-gradient(90deg, #302d28, #494034, #302d28); }
+@media (max-width: 768px) { .theme-toolbar { right: 15px; } }
+@media (max-width: 380px) {
+    body > .graphql-header .cheema { font-size: 3.3rem; }
+    body > .graphql-header .ql { font-size: 2rem; }
+}

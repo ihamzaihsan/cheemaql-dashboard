@@ -15,6 +15,35 @@ const userInfoElement = document.getElementById('userInfo');
 const logoutBtn = document.getElementById('logoutBtn');
 const auditGraph = document.getElementById('auditGraph');
 
+let profileXPTransactions = [];
+let dashboardResizeTimer;
+
+// Fill the desktop's first screen through the chart cards, keeping the next row below it.
+const updateOverviewLayout = () => {
+    const container = document.querySelector('.profile-container');
+    if (window.matchMedia('(min-width: 1200px)').matches) {
+        const chart = document.querySelector('.xp-progression-svg');
+        const cardStyles = getComputedStyle(chart.closest('.xp-graph-card'));
+        const chartTop = chart.getBoundingClientRect().top + window.scrollY;
+        const cardBottom = parseFloat(cardStyles.paddingBottom) + parseFloat(cardStyles.borderBottomWidth);
+        const chartHeight = Math.max(220, Math.floor(window.innerHeight - chartTop - cardBottom - 12));
+        container.style.setProperty('--overview-chart-height', `${chartHeight}px`);
+    } else {
+        container.style.removeProperty('--overview-chart-height');
+    }
+    if (profileXPTransactions.length) createXPGraph(profileXPTransactions);
+};
+
+const scheduleOverviewLayout = () => {
+    clearTimeout(dashboardResizeTimer);
+    dashboardResizeTimer = setTimeout(updateOverviewLayout, 200);
+};
+window.addEventListener('resize', scheduleOverviewLayout);
+const overviewObserver = new ResizeObserver(scheduleOverviewLayout);
+overviewObserver.observe(document.getElementById('overview'));
+overviewObserver.observe(document.querySelector('.graphql-header'));
+document.fonts.ready.then(scheduleOverviewLayout);
+
 // Event Listeners
 logoutBtn.addEventListener('click', () => {
     // Add a small animation before logout
@@ -66,13 +95,9 @@ const loadUserData = async () => {
         displayUserInfo(userInfoData.user);
         
         if (xpData.transaction && xpData.transaction.length > 0) {
-            createXPGraph(xpData.transaction);
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => createXPGraph(xpData.transaction), 200);
-            });
+            profileXPTransactions = xpData.transaction;
         }
+        updateOverviewLayout();
         
         createAuditGraph({
             transaction: auditData.up,
@@ -165,6 +190,7 @@ const createXPGraph = (transactions) => {
     svg.selectAll('.hover-line').remove();
     svg.selectAll('.x-axis').remove();
     svg.selectAll('.y-axis').remove();
+    svg.selectAll('.axis-label').remove();
 
     // Data processing
     let cumulativeXP = 0;
@@ -400,7 +426,7 @@ const createXPGraph = (transactions) => {
         .attr('x', width / 2)
         .attr('y', height - 10)
         .style('font-size', '12px')
-        .style('fill', '#64748b')
+        .style('fill', 'var(--chart-text)')
         .text('Date');
         
     svg.append('text')
@@ -410,7 +436,7 @@ const createXPGraph = (transactions) => {
         .attr('x', -height / 2)
         .attr('y', 25)
         .style('font-size', '12px')
-        .style('fill', '#64748b')
+        .style('fill', 'var(--chart-text)')
         .text('Experience Points');
 };
 
@@ -749,7 +775,7 @@ const drawRadarChart = (containerSelector, data, title) => {
         svg.append('circle')
             .attr('r', radius)
             .style('fill', 'none')
-            .style('stroke', '#94a3b8')
+            .style('stroke', 'var(--chart-grid)')
             .style('stroke-width', 0.5);
 
         svg.append('text')
@@ -757,7 +783,7 @@ const drawRadarChart = (containerSelector, data, title) => {
             .attr('y', -radius + 2)
             .text(Math.round(100 * (i/levels )))
             .style('font-size', '10px')
-            .style('fill', '#64748b');
+            .style('fill', 'var(--chart-text)');
     }
 
     // Create axes lines
@@ -770,7 +796,7 @@ const drawRadarChart = (containerSelector, data, title) => {
             .attr('y1', 0)
             .attr('x2', Math.cos(angle) * innerRadius)
             .attr('y2', Math.sin(angle) * innerRadius)
-            .style('stroke', '#94a3b8')
+            .style('stroke', 'var(--chart-grid)')
             .style('stroke-width', 0.5);
 
         // Axis Labels - position them better for small screens
@@ -779,7 +805,7 @@ const drawRadarChart = (containerSelector, data, title) => {
             .text(axis)
             .attr('text-anchor', 'middle')
             .style('font-size', '10px')
-            .style('fill', 'rgb(39, 42, 47)')
+            .style('fill', 'var(--chart-label)')
             .style('text-shadow', '0 1px 0 #fff');
     });
 
@@ -822,7 +848,7 @@ const drawRadarChart = (containerSelector, data, title) => {
             .attr('cx', (d, i) => Math.cos(angleSlice * i - Math.PI/2) * rScale(d.value))
             .attr('cy', (d, i) => Math.sin(angleSlice * i - Math.PI/2) * rScale(d.value))
             .style('fill', 'var(--accent-primary)')
-            .style('stroke', '#fff')
+            .style('stroke', 'var(--chart-point-outline)')
             .style('stroke-width', 2)
             .style('opacity', 0)
             .transition()
